@@ -15,19 +15,20 @@ public class CategoryService {
     public List<Category> loadAllCategory(){
         return (List<Category>) categoryRepository.findAll();
     }
-    public Category loadBookById(int id) {
-        return categoryRepository.findById(id).get();
+
+    public Category loadCategoryById(int Cid) {
+        return categoryRepository.findById(Cid).get();
     }
 
-    public Category saveBook(Category category) {
+    public Category saveCategory(Category category) {
         categoryRepository.save(category);
-        return loadBookById(category.getCid());
+        return loadCategoryById(category.getCid());
     }
 
-    public void deleteBook(int id) {categoryRepository.deleteById(id);
+    public void deleteCategory(int Cid) {categoryRepository.deleteById(Cid);
     }
 
-    public Category updateBook(Category category) {
+    public Category updateCategory(Category category) {
         return categoryRepository.save(category);
     }
 

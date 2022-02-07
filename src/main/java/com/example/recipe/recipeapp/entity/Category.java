@@ -1,20 +1,21 @@
 package com.example.recipe.recipeapp.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "category")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int cid;
+    private int id;
 
-    public int getCid() {
-        return cid;
+    public int getId() {
+        return id;
     }
 
-    public void setCid(int cid) {
-        this.cid = cid;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -27,4 +28,7 @@ public class Category {
 
     @Column
     private String name;
+
+    @OneToMany(mappedBy = "category")
+    private List<Book> books;
 }

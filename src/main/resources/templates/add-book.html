@@ -1,29 +1,325 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Add New Book</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Index</title>
 </head>
-<body>
-<div align="center">
-  <form action="#" th:action="@{/books/save}" th:object="${book}" method="post">
 
-    <table border="0" cellpadding="10">
-      <tr>
-        <td>Book Name:</td>
-        <td><input type="text" th:field="*{bookname}" /></td>
-      </tr>
-      <tr>
-        <td>Author:</td>
-        <td><input type="text" th:field="*{author}" /></td>
-      </tr>
-      <tr>
-        <td>Price:</td>
-        <td><input type="text" th:field="*{price}" /></td>
-      </tr>
-      <tr>
-        <td colspan="2"><button type="submit">Save</button> </td>
-      </tr>
-    </table>
-  </form>
-</div>
+<style>
+
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif !important;
+    background: #ffffff !important;
+  }
+
+  .main-header{
+    background: #f3f3f3;
+    display: flex;
+    padding: 10px;
+    border-bottom: solid 1px #dbdbdb;
+  }
+
+  .book-mana{
+    width: 50%;
+  }
+
+  .spin-clas{
+    width: 50%;
+  }
+
+  .spin-clas h2{
+    float: right;
+  }
+
+  .main-content{
+    display: flex;
+  }
+
+  .side-nav{
+    width: 20%;
+    height: auto;
+    min-height: 780px;
+    background: #f3f3f3;
+  }
+
+  .side-nav ul li{
+    padding: 15px;
+    background: #f3f3f3;
+    text-decoration: none;
+    font-size: 20px;
+    border: solid 1px #dbdbdb;
+  }
+
+  .side-nav ul li a{
+    color: #333;
+    text-decoration: none;
+  }
+
+  .side-nav ul li a:hover{
+    color: #2196f3;
+  }
+
+  .side-nav ul{
+    padding: 0;
+  }
+
+  .content{
+    width: 80%;
+    padding: 20px;
+  }
+
+  .content button{
+    background: #2196f3;
+    font-size: 20px;
+    color: #ffffff;
+    width: 100%;
+    height: 60px;
+  }
+
+  .content-sec{
+    height: auto;
+    margin-top: 30px;
+  }
+
+  *{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+  }
+  body{
+    font-family: Helvetica;
+    -webkit-font-smoothing: antialiased;
+    background: rgba( 71, 147, 227, 1);
+  }
+
+  /* Table Styles */
+
+  .table-wrapper{
+    box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
+  }
+
+  .fl-table {
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+    background-color: white;
+  }
+
+  .fl-table td, .fl-table th {
+    text-align: center;
+    padding: 8px;
+  }
+
+  .fl-table td {
+    border-right: 1px solid #f8f8f8;
+    font-size: 12px;
+  }
+
+  .fl-table thead th {
+    color: #ffffff;
+    background: #4FC3A1;
+  }
+
+
+  .fl-table thead th:nth-child(odd) {
+    color: #ffffff;
+    background: #324960;
+  }
+
+  .fl-table tr:nth-child(even) {
+    background: #F8F8F8;
+  }
+
+  /* Responsive */
+
+  @media (max-width: 767px) {
+    .fl-table {
+      display: block;
+      width: 100%;
+    }
+    .table-wrapper:before{
+      content: "Scroll horizontally >";
+      display: block;
+      text-align: right;
+      font-size: 11px;
+      color: white;
+      padding: 0 0 10px;
+    }
+    .fl-table thead, .fl-table tbody, .fl-table thead th {
+      display: block;
+    }
+    .fl-table thead th:last-child{
+      border-bottom: none;
+    }
+    .fl-table thead {
+      float: left;
+    }
+    .fl-table tbody {
+      width: auto;
+      position: relative;
+      overflow-x: auto;
+    }
+    .fl-table td, .fl-table th {
+      padding: 20px .625em .625em .625em;
+      height: 60px;
+      vertical-align: middle;
+      box-sizing: border-box;
+      overflow-x: hidden;
+      overflow-y: auto;
+      width: 120px;
+      font-size: 13px;
+      text-overflow: ellipsis;
+    }
+    .fl-table thead th {
+      text-align: left;
+      border-bottom: 1px solid #f7f7f9;
+    }
+    .fl-table tbody tr {
+      display: table-cell;
+    }
+    .fl-table tbody tr:nth-child(odd) {
+      background: none;
+    }
+    .fl-table tr:nth-child(even) {
+      background: transparent;
+    }
+    .fl-table tr td:nth-child(odd) {
+      background: #F8F8F8;
+      border-right: 1px solid #E6E4E4;
+    }
+    .fl-table tr td:nth-child(even) {
+      border-right: 1px solid #E6E4E4;
+    }
+    .fl-table tbody td {
+      display: block;
+      text-align: center;
+    }
+  }
+
+  tbody tr td a i{
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+  }
+
+  .fa-trash{
+    color: #ff7b7b;
+  }
+
+  /* Style inputs with type="text", select elements and textareas */
+  input[type=text], select, textarea {
+    width: 100%; /* Full width */
+    padding: 12px; /* Some padding */
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+  }
+
+  input[type=number], select, textarea {
+    width: 100%; /* Full width */
+    padding: 12px; /* Some padding */
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+  }
+  /* Style the submit button with a specific background color etc */
+  input[type=submit] {
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  /* Style the normal button with a specific background color etc */
+  input[type=button] {
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  /* When moving the mouse over the submit button, add a darker green color */
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+
+  /* Add a background color and some padding around the form */
+  .container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 37px;
+    width: 548px;
+    margin-left: 250px;
+    margin-right: 250px;
+    margin-top: 50;
+    height: fit-content;
+  }
+
+</style>
+
+<body>
+<header class="main-header">
+  <div class="book-mana">
+    <h2>Book Management</h2>
+  </div>
+
+  <div class="spin-clas">
+    <h2>Spinbot Web App</h2>
+  </div>
+</header>
+
+<section class="main-content">
+  <div class="side-nav">
+    <ul>
+      <li><a href="/index">Dashboard</a></li>
+      <li><a href="/books">Books</a></li>
+      <li><a href="/categories">Category</a></li>
+    </ul>
+  </div>
+
+  <div class="content">
+    <center>	<h1>Add Book</h1></center>
+    </dic>
+    <div class="container">
+      <form action="#" th:action="@{/books/save}" th:object="${book}" method="post" width="100px">
+
+        <label for="bookname">Book Name</label>
+        <input type="text" th:field="*{bookname}" id="bookname" name="bookname" placeholder="Book Name..">
+
+        <label for="author">Author</label>
+        <input type="text" id="author" name="author" placeholder="Author Name..">
+
+        <label for="price">Price</label>
+        <input type="number" th:field="*{price}" id="price" name="price" placeholder="Price..">
+
+        <label for="category">Category</label>
+        <select id="category" th:field="*{category}">
+          <option th:each="category : ${allCategory}"
+                  th:value="${category.id}"
+                  th:text="${category.name}">
+        </select>
+
+        <input type="submit" value="Submit">
+        <form>
+          <input type="button" onclick="window.location.href='/index';" value="Go to Home" />
+        </form>
+      </form>
+    </div>
+
+</section>
 </body>
 </html>

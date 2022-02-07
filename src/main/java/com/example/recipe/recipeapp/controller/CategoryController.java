@@ -3,49 +3,51 @@ package com.example.recipe.recipeapp.controller;
 import com.example.recipe.recipeapp.entity.Category;
 import com.example.recipe.recipeapp.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/categories")
 public class CategoryController {
     @Autowired
     CategoryService categoryService;
 
     @RequestMapping(method = RequestMethod.GET)
-    private String getAllcategory(Model model) {
+    private String getAllCategory(Model model) {
         List<Category> list = categoryService.loadAllCategory();
         model.addAttribute("allCategory", list);
-        return "category";
+//        return "categories";
+        return "categories";
     }
-    @RequestMapping("/newcategory")
+    @RequestMapping("/new")
     public String showNewCategoryPage(Model model) {
         Category category = new Category();
         model.addAttribute("category", category);
         return "add-category";
     }
-    @RequestMapping(path = "/savecategory", method = RequestMethod.POST)
+    @RequestMapping(path = "/save", method = RequestMethod.POST)
     public String saveNewCategory(@ModelAttribute("category") Category category) {
         categoryService.saveCategory(category);
         return "redirect:/categories";
     }
-    @GetMapping("/edit/{Cid}")
-    private String editCategory(@PathVariable("Cid") int Cid, Model model) {
-        Category category = categoryService.loadCategoryById(Cid);
+    @GetMapping("/edit/{id}")
+    private String editCategory(@PathVariable("id") int id, Model model) {
+        Category category = categoryService.loadCategoryById(id);
         model.addAttribute("category", category);
         return "edit-category";
     }
-    @RequestMapping(path = "/update/{Cid}", method = RequestMethod.POST)
-    private String updateCategory(@PathVariable("Cid") int Cid, @ModelAttribute Category category) {
-        category.setCid(Cid);
+    @RequestMapping(path = "/update/{id}", method = RequestMethod.POST)
+    private String updateCategory(@PathVariable("id") int id, @ModelAttribute Category category) {
+        category.setId(id);
         categoryService.updateCategory(category);
-        return "redirect:/category";
+        return "redirect:/categories";
     }
-    @GetMapping("/delete/{Cid}")
-    private String deleteCategory(@PathVariable("Cid") int Cid) {
-        categoryService.deleteCategory(Cid);
+    @GetMapping("/delete/{id}")
+    private String deleteCategory(@PathVariable("id") int id) {
+        categoryService.deleteCategory(id);
         return "redirect:/categories";
     }
 }

@@ -1,0 +1,61 @@
+<!--<html xmlns:th="https://www.thymeleaf.org">-->
+<!--<body>-->
+<!--<div align="center">-->
+<!--    <a href="/books/">-->
+<!--        <button>View all books</button>-->
+<!--    </a>-->
+<!--    <a href="/categories/new">-->
+<!--        <button>Add New Category</button>-->
+<!--    </a>-->
+<!--    <table border="1" cellpadding="5">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>Name</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="category : ${allCategory}">-->
+<!--            <td th:text="${category.name}"></td>-->
+<!--            <td>-->
+<!--                <a th:href="@{/categories/edit/{id}(id=${category.cid})}">Edit</a>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <a th:href="@{/categories/delete/{id}(id=${category.cid})}">Delete</a>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Categories</title>
+</head>
+<body>
+<table border="1" cellpadding="5">
+    <thead>
+    <tr>
+        <th>Category Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="category : ${allCategory}">
+        <td th:text="${category.name}"></td>
+        <td>
+            <a th:href="@{/categories/edit/{id}(id=${category.id})}">Edit</a>
+        </td>
+        <td>
+            <a th:href="@{/categories/delete/{id}(id=${category.id})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -6,23 +6,46 @@
 <div align="center">
     <form action="#" th:action="@{/books/update/{id}(id=${book.id})}" th:object="${book}" method="post">
 
-        <table border="0" cellpadding="10">
-            <tr>
-                <td>Book Name:</td>
-                <td><input type="text" th:field="*{bookname}" /></td>
-            </tr>
-            <tr>
-                <td>Author:</td>
-                <td><input type="text" th:field="*{author}" /></td>
-            </tr>
-            <tr>
-                <td>Price:</td>
-                <td><input type="text" th:field="*{price}" /></td>
-            </tr>
-            <tr>
-                <td colspan="2"><button type="submit">Save</button> </td>
-            </tr>
-        </table>
+<!--        <table border="0" cellpadding="10">-->
+<!--            <tr>-->
+<!--                <td>Book Name:</td>-->
+<!--                <td><input type="text" th:field="*{bookname}" /></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>Author:</td>-->
+<!--                <td><input type="text" th:field="*{author}" /></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>Price:</td>-->
+<!--                <td><input type="text" th:field="*{price}" /></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>Category</td>-->
+<!--                <td> </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td colspan="2"><button type="submit">Save</button> </td>-->
+<!--            </tr>-->
+<!--        </table>-->
+
+
+        <label for="bookname">Book Name</label>
+        <input type="text" th:field="*{bookname}" id="bookname" name="bookname" placeholder="Book Name..">
+
+        <label for="author">author</label>
+        <input type="text" id="author" name="author" placeholder="Author Name..">
+
+        <label for="price">Price</label>
+        <input type="text" th:field="*{price}" id="price" name="price" placeholder="Price..">
+
+        <label for="category">Category</label>
+        <select id="category" th:field="*{category}">
+            <option th:each="category : ${allCategory}"
+                    th:value="${category.id}"
+                    th:text="${category.name}">
+        </select>
+
+        <input type="submit" value="Submit">
     </form>
 </div>
 </body>

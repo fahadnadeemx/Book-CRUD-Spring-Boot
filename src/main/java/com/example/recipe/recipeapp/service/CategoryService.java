@@ -16,16 +16,15 @@ public class CategoryService {
         return (List<Category>) categoryRepository.findAll();
     }
 
-    public Category loadCategoryById(int Cid) {
-        return categoryRepository.findById(Cid).get();
+    public Category loadCategoryById(int id) {
+        return categoryRepository.findById(id).get();
     }
 
-    public Category saveCategory(Category category) {
-        categoryRepository.save(category);
-        return loadCategoryById(category.getCid());
+    public Category saveCategory(Category category) {categoryRepository.save(category);
+        return loadCategoryById(category.getId());
     }
 
-    public void deleteCategory(int Cid) {categoryRepository.deleteById(Cid);
+    public void deleteCategory(int id) {categoryRepository.deleteById(id);
     }
 
     public Category updateCategory(Category category) {

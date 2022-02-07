@@ -1,11 +1,7 @@
 package com.example.recipe.recipeapp.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "book")
@@ -16,6 +12,7 @@ public class Book {
     private int id;
 
     @Column
+    @NotNull
     private String bookname;
 
     @Column
@@ -23,6 +20,19 @@ public class Book {
 
     @Column
     private int price;
+
+
+    @ManyToOne
+    @JoinColumn(name="Cid")
+    private Category category;
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     public int getId() {
         return id;
